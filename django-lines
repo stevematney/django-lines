@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+
+function error_exit {
+    rm -f *djangolines.tmp
+}
+
+trap error_exit ERR
+
+if [ $# -gt 0 ]; then 
+    for dir; do true; done
+else
+    dir=./
+fi
+
+if [ $dir = "-p" ]; then
+    dir=./
+elif [ $dir = "-t" ]; then
+    dir=./
+fi
+
+file=temp_`date +%s`_djangolines.tmp
+
+find $dir -type f |
+egrep '.*\.(py|html|css|js)$' |
+grep -wvG .*_old |
+grep -wvG .*manage.py$ |
+grep -wv 'migrations' > $file
+
+newfile=newfile_`date +%s`_djangolines.tmp
+cp $file $newfile
+
+cat $newfile |
+while getopts ":pt" opt; do 
+    case $opt in
+        p)
+            egrep -v '.*tests.*$' > $file
+            ;;
+        t)
+            grep -G tests > $file
+            ;;
+    esac
+done
+
+cat $file |
+grep -wv __init__ |
+xargs wc -l 
+
+rm $file
+rm $newfile
