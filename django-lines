@@ -17,6 +17,8 @@ COMMANDS:
         Show only production code (excluding tests).
     -t
         Show only test code
+
+
 EOF
 }   
 
