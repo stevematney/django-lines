@@ -16,7 +16,7 @@ REMOVAL
 
 USAGE
 -----
-Usage: django-lines [OPTIONS] <path>
+Usage: django-lines [OPTIONS] [path]
 
 COMMANDS:
     --help, -h               
