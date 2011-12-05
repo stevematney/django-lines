@@ -21,8 +21,10 @@ Usage: django-lines [OPTIONS] [path]
 COMMANDS:
     --help, -h               
         Show this message
+
     -p
         Show only production code (excluding tests).
+
     -t
         Show only test code
 
