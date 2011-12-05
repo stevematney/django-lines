@@ -6,7 +6,27 @@ function error_exit {
     rm -f *djangolines.tmp
 }
 
+usage() {
+cat << EOF
+Usage: django-lines [OPTIONS] <path>
+
+COMMANDS:
+    --help, -h               
+        Show this message
+    -p
+        Show only production code (excluding tests).
+    -t
+        Show only test code
+EOF
+}   
+
 trap error_exit ERR
+
+if [[ $1 = "--help" ]] || [[ $1 = "-h" ]]; then
+    error_exit
+    usage
+    exit 0
+fi
 
 if [ $# -gt 0 ]; then 
     for dir; do true; done
