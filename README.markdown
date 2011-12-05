@@ -19,6 +19,7 @@ USAGE
 Usage: django-lines [OPTIONS] [path]
 
 COMMANDS:
+
     --help, -h               
         Show this message
 
